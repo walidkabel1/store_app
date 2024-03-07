@@ -1,6 +1,3 @@
-import 'dart:ffi';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/cart/cart_screen.dart';
@@ -14,7 +11,7 @@ import 'package:store_app/screens/search_screen.dart';
 import 'package:store_app/widgets/subtitle_text.dart';
 
 class rootscreen extends StatefulWidget {
-  rootscreen({super.key});
+  const rootscreen({super.key});
   static const route = '/rootscreen';
 
   @override
@@ -45,15 +42,14 @@ class _rootscreenState extends State<rootscreen> {
     final productprovider =
         Provider.of<ProductProvider>(context, listen: false);
     final cartprovider = Provider.of<CartProvider>(context, listen: false);
-    final wishlist_provider =
-        Provider.of<wishlistProvider>(context, listen: false);
+    final wishlistProvider =
+        Provider.of<WishlistProvider>(context, listen: false);
     final userprovider = Provider.of<UserProvider>(context);
 
     try {
       Future.wait(
           {productprovider.fetchproducts(), userprovider.fetchUserInfo()});
-      Future.wait(
-          {cartprovider.fetchcart(), wishlist_provider.fetchwishlist()});
+      Future.wait({cartprovider.fetchcart(), wishlistProvider.fetchwishlist()});
     } catch (error) {
       rethrow;
     } finally {
@@ -70,8 +66,8 @@ class _rootscreenState extends State<rootscreen> {
     return Scaffold(
       body: PageView(
         controller: controller,
-        children: screens,
         physics: NeverScrollableScrollPhysics(),
+        children: screens,
       ),
       bottomNavigationBar: NavigationBar(
           elevation: 2,
@@ -90,7 +86,7 @@ class _rootscreenState extends State<rootscreen> {
             Badge(
                 alignment: Alignment.center,
                 label: subTitleTextWidget(
-                  label: "${cartprovider.getcartitems.length.toString()}",
+                  label: cartprovider.getcartitems.length.toString(),
                 ),
                 backgroundColor: Colors.red,
                 child: NavigationDestination(

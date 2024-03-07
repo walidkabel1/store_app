@@ -23,7 +23,7 @@ bool isloading = false;
 class _HeartButtonWidgetState extends State<HeartButtonWidget> {
   @override
   Widget build(BuildContext context) {
-    final wish_listprovider = Provider.of<wishlistProvider>(context);
+    final wishListprovider = Provider.of<WishlistProvider>(context);
 
     return Container(
       decoration: BoxDecoration(
@@ -39,17 +39,17 @@ class _HeartButtonWidgetState extends State<HeartButtonWidget> {
               isloading = true;
             });
             try {
-              if (wish_listprovider.getwishlistitems
+              if (wishListprovider.getwishlistitems
                   .containsKey(widget.productid)) {
-                wish_listprovider.removeitemfromwishlistfirebase(
+                wishListprovider.removeitemfromwishlistfirebase(
                     productid: widget.productid,
-                    wishlistid: wish_listprovider
+                    wishlistid: wishListprovider
                         .getwishlistitems[widget.productid]!.wishlistid);
               } else {
-                wish_listprovider.addtowishlistfirebase(
+                wishListprovider.addtowishlistfirebase(
                     productid: widget.productid, context: context);
               }
-              await wish_listprovider.fetchwishlist();
+              await wishListprovider.fetchwishlist();
             } catch (e) {
               MyappMethods.ShowErrorOrWarningDialog(
                   context: context, subtitle: e.toString(), function: () {});
@@ -63,12 +63,12 @@ class _HeartButtonWidgetState extends State<HeartButtonWidget> {
           },
           icon: isloading
               ? CircularProgressIndicator()
-              : Icon(wish_listprovider.IsProductInwishlist(
+              : Icon(wishListprovider.IsProductInwishlist(
                       productid: widget.productid)
                   ? IconlyBold.heart
                   : IconlyLight.heart),
           color:
-              wish_listprovider.IsProductInwishlist(productid: widget.productid)
+              wishListprovider.IsProductInwishlist(productid: widget.productid)
                   ? Colors.red
                   : Colors.grey),
     );

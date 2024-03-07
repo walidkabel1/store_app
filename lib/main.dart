@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => themeProvider()),
         ChangeNotifierProvider(create: (_) => ProductProvider()),
         ChangeNotifierProvider(create: (_) => CartProvider()),
-        ChangeNotifierProvider(create: (_) => wishlistProvider()),
+        ChangeNotifierProvider(create: (_) => WishlistProvider()),
         ChangeNotifierProvider(create: (_) => ViewedRecentlyProvider()),
         ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => OrderProvider()),
@@ -45,19 +45,19 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           routes: {
             productdetails.route: (context) => const productdetails(),
-            wishlist.route: (context) => wishlist(),
-            viewedrecently.route: (context) => viewedrecently(),
-            LoginScreen.route: (context) => LoginScreen(),
-            RegisterScreen.route: (context) => RegisterScreen(),
-            searchpage.route: (context) => searchpage(),
-            rootscreen.route: (context) => rootscreen(),
-            OrdersScreen.route: (context) => OrdersScreen(),
+            wishlist.route: (context) => const wishlist(),
+            viewedrecently.route: (context) => const viewedrecently(),
+            LoginScreen.route: (context) => const LoginScreen(),
+            RegisterScreen.route: (context) => const RegisterScreen(),
+            searchpage.route: (context) => const searchpage(),
+            rootscreen.route: (context) => const rootscreen(),
+            OrdersScreen.route: (context) => const OrdersScreen(),
           },
           debugShowCheckedModeBanner: false,
           title: 'Store App',
           theme: styles.themeData(
               context: context, isDarkTheme: themeProvider.getIsDarkTheme),
-          home: rootscreen(),
+          home: const LoginScreen(),
         );
       }),
     );

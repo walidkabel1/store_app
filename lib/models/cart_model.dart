@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class cartmodel with ChangeNotifier {
+class CartModel with ChangeNotifier {
   String cartid, productid;
   final int quantity;
 
-  cartmodel(
+  CartModel(
       {required this.cartid, required this.productid, required this.quantity});
 }

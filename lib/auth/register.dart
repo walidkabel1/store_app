@@ -12,12 +12,11 @@ import 'package:store_app/root_screen.dart';
 import 'package:store_app/screens/loading_manger.dart';
 import 'package:store_app/services/myapp_methods.dart';
 import 'package:store_app/widgets/picked_image.dart';
-import 'package:store_app/widgets/subtitle_text.dart';
 import 'package:store_app/widgets/title_text.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const route = '/RegisterScreen';
-  RegisterScreen({super.key});
+  const RegisterScreen({super.key});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -117,7 +116,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       } catch (error) {
         MyappMethods.ShowErrorOrWarningDialog(
             context: context,
-            subtitle: "an error occured ${error}",
+            subtitle: "an error occured $error",
             function: () {
               Navigator.pop(context);
             });
@@ -171,17 +170,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const TitleTextWidget(
                     label: "smart store",
                     fontSize: 30,
+                    color: Colors.red,
                   ),
                   const SizedBox(
                     height: 16.0,
                   ),
-                  Align(
+                  const Align(
                     alignment: Alignment.centerLeft,
-                    child: const Column(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TitleTextWidget(label: "Welcome"),
-                        subTitleTextWidget(label: "Your welcome message")
+                        Center(child: TitleTextWidget(label: "Register Now")),
                       ],
                     ),
                   ),

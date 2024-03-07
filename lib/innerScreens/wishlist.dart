@@ -9,15 +9,15 @@ import 'package:store_app/services/myapp_methods.dart';
 import 'package:store_app/widgets/title_text.dart';
 
 class wishlist extends StatelessWidget {
-  wishlist({super.key});
+  const wishlist({super.key});
   static const route = '/wishlist';
 
   @override
   Widget build(BuildContext context) {
-    final wishlist_provider = Provider.of<wishlistProvider>(context);
+    final wishlistProvider = Provider.of<WishlistProvider>(context);
 
     Size size = MediaQuery.of(context).size;
-    return wishlist_provider.getwishlistitems.isEmpty
+    return wishlistProvider.getwishlistitems.isEmpty
         ? cartwidget(
             imagepath: assetsManager.bagwish,
             subtitle:
@@ -34,7 +34,7 @@ class wishlist extends StatelessWidget {
                           context: context,
                           subtitle: "remove items",
                           function: () {
-                            wishlist_provider.clearwishlistfromfirebase();
+                            wishlistProvider.clearwishlistfromfirebase();
                             // wishlist_provider.clearwishlist();
                             Navigator.pop(context);
                           });
@@ -45,16 +45,15 @@ class wishlist extends StatelessWidget {
                     ))
               ],
               title: TitleTextWidget(
-                label:
-                    'wishlist (${wishlist_provider.getwishlistitems.length})',
+                label: 'wishlist (${wishlistProvider.getwishlistitems.length})',
               ),
               leading: Image.asset(assetsManager.shoppingcart),
             ),
             body: DynamicHeightGridView(
-              itemCount: wishlist_provider.getwishlistitems.length,
+              itemCount: wishlistProvider.getwishlistitems.length,
               builder: ((context, index) {
                 return productwidget(
-                  productid: wishlist_provider.getwishlistitems.values
+                  productid: wishlistProvider.getwishlistitems.values
                       .toList()[index]
                       .productid,
                 );

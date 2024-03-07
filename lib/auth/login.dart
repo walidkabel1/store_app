@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
     } catch (error) {
       MyappMethods.ShowErrorOrWarningDialog(
           context: context,
-          subtitle: "an error occured ${error}",
+          subtitle: "an error occured $error",
           function: () {
             Navigator.pop(context);
           });

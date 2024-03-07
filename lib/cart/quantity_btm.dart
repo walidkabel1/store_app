@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/models/cart_model.dart';
@@ -8,7 +6,7 @@ import 'package:store_app/widgets/subtitle_text.dart';
 
 class quantitybutton extends StatelessWidget {
   const quantitybutton({super.key, required this.cart_model});
-  final cartmodel cart_model;
+  final CartModel cart_model;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class quantitybutton extends StatelessWidget {
             width: 50,
             decoration: BoxDecoration(
                 color: Colors.grey, borderRadius: BorderRadius.circular(12))),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Expanded(
@@ -49,7 +47,7 @@ class quantitybutton extends StatelessWidget {
                       );
                     }),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               )
             ],

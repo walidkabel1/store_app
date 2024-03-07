@@ -15,7 +15,7 @@ class latestarrivalwidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productmodel = Provider.of<ProductModel>(context);
-    final wishlist_Provider = Provider.of<wishlistProvider>(context);
+    final wishlistProvider = Provider.of<WishlistProvider>(context);
     final cartprovider = Provider.of<CartProvider>(context);
     final viewedrecentlyprovider = Provider.of<ViewedRecentlyProvider>(context);
 

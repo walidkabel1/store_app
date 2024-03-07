@@ -8,10 +8,11 @@ import 'package:store_app/products/product_widget.dart';
 import 'package:store_app/widgets/title_text.dart';
 
 class searchpage extends StatefulWidget {
-  searchpage({super.key});
+  const searchpage({super.key});
 
   @override
   static const route = '/searchpage';
+  @override
   State<searchpage> createState() => _searchpageState();
 }
 
@@ -47,7 +48,7 @@ class _searchpageState extends State<searchpage> {
       child: Scaffold(
         appBar: AppBar(
           title: TitleTextWidget(
-            label: passedcategory == null ? "search screen" : passedcategory,
+            label: passedcategory ?? "search screen",
           ),
           leading: Image.asset(assetsManager.shoppingcart),
         ),

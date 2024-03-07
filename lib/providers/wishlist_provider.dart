@@ -6,7 +6,7 @@ import 'package:store_app/models/wishlist_model.dart';
 import 'package:store_app/services/myapp_methods.dart';
 import 'package:uuid/uuid.dart';
 
-class wishlistProvider with ChangeNotifier {
+class WishlistProvider with ChangeNotifier {
   final Map<String, wishlistmodel> wishlistitems = {};
   Map<String, wishlistmodel> get getwishlistitems {
     return wishlistitems;

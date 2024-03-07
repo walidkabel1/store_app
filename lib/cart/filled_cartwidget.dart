@@ -1,12 +1,10 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/cart/quantity_btm.dart';
 import 'package:store_app/models/cart_model.dart';
 import 'package:store_app/providers/cart_provider.dart';
 import 'package:store_app/providers/product_provider.dart';
-import 'package:store_app/services/assetsmanager.dart';
-import 'package:store_app/cart/bottom_checkout.dart';
-import 'package:store_app/cart/quantity_btm.dart';
 import 'package:store_app/widgets/heart_btn.dart';
 import 'package:store_app/widgets/subtitle_text.dart';
 import 'package:store_app/widgets/title_text.dart';
@@ -17,8 +15,8 @@ class filledcartwidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productprovider = Provider.of<ProductProvider>(context);
-    final cartmodelprovider = Provider.of<cartmodel>(context);
-    final cart_provider = Provider.of<CartProvider>(context);
+    final cartmodelprovider = Provider.of<CartModel>(context);
+    final cartProvider = Provider.of<CartProvider>(context);
 
     final getcurrentproduct =
         productprovider.FindByProductId(productid: cartmodelprovider.productid);
@@ -56,7 +54,7 @@ class filledcartwidget extends StatelessWidget {
                           children: [
                             IconButton(
                               onPressed: () {
-                                cart_provider.removeitemfromcartfirebase(
+                                cartProvider.removeitemfromcartfirebase(
                                     productid: getcurrentproduct.productId,
                                     cartid: cartmodelprovider.cartid,
                                     quantity: cartmodelprovider.quantity);

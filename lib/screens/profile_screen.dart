@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/auth/login.dart';
 import 'package:store_app/innerScreens/orders_screen.dart';
+import 'package:store_app/innerScreens/viewed_recently.dart';
+import 'package:store_app/innerScreens/wishlist.dart';
 import 'package:store_app/models/user_model.dart';
+import 'package:store_app/providers/theme_provider.dart';
 import 'package:store_app/providers/user_provider.dart';
 import 'package:store_app/screens/loading_manger.dart';
 import 'package:store_app/services/assetsmanager.dart';
-import 'package:store_app/innerScreens/viewed_recently.dart';
-import 'package:store_app/innerScreens/wishlist.dart';
-import 'package:store_app/providers/theme_provider.dart';
 import 'package:store_app/services/myapp_methods.dart';
 import 'package:store_app/widgets/subtitle_text.dart';
 import 'package:store_app/widgets/title_text.dart';
 
 class profilepage extends StatefulWidget {
-  profilepage({super.key});
+  const profilepage({super.key});
 
   @override
   State<profilepage> createState() => _profilepageState();
@@ -26,6 +26,7 @@ bool _isloading = true;
 
 class _profilepageState extends State<profilepage>
     with AutomaticKeepAliveClientMixin {
+  @override
   bool get wantKeepAlive => true;
   User? user = FirebaseAuth.instance.currentUser;
   Future<void> fetchUserInfo() async {
@@ -57,7 +58,7 @@ class _profilepageState extends State<profilepage>
       WidgetsBinding.instance.addPostFrameCallback((_) {
         MyappMethods.ShowErrorOrWarningDialog(
             context: context,
-            subtitle: "an error occured ${error}",
+            subtitle: "an error occured $error",
             function: () {
               print(error);
               Navigator.pop(context);
@@ -84,7 +85,7 @@ class _profilepageState extends State<profilepage>
 
     return Scaffold(
       appBar: AppBar(
-        title: TitleTextWidget(
+        title: const TitleTextWidget(
           label: 'Profile Screen',
         ),
         leading: Image.asset(assetsManager.shoppingcart),
@@ -95,21 +96,21 @@ class _profilepageState extends State<profilepage>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               Visibility(
                   visible: user == null ? true : false,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(16.0),
                     child: TitleTextWidget(
                       label: "please login to have ultimated acsess",
                     ),
                   )),
               user == null
-                  ? SizedBox.shrink()
+                  ? const SizedBox.shrink()
                   : Padding(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
                           Container(
@@ -126,7 +127,7 @@ class _profilepageState extends State<profilepage>
                                     image: NetworkImage(userModel!.userimage),
                                     fit: BoxFit.fill)),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 7,
                           ),
                           Column(
@@ -141,24 +142,24 @@ class _profilepageState extends State<profilepage>
                         ],
                       ),
                     ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: TitleTextWidget(label: "General"),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               user == null
-                  ? SizedBox.shrink()
+                  ? const SizedBox.shrink()
                   : customlisttile(
                       text: "Address",
                       imagepath: assetsManager.address,
                       ontap: () {}),
               user == null
-                  ? SizedBox.shrink()
+                  ? const SizedBox.shrink()
                   : customlisttile(
                       text: "All Orders",
                       imagepath: assetsManager.ordersvg,
@@ -177,14 +178,14 @@ class _profilepageState extends State<profilepage>
                   ontap: () {
                     Navigator.of(context).pushNamed(viewedrecently.route);
                   }),
-              Divider(
+              const Divider(
                 thickness: 2,
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: TitleTextWidget(label: "settings"),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               SwitchListTile(
@@ -199,25 +200,25 @@ class _profilepageState extends State<profilepage>
                   onChanged: (value) {
                     themeProviders.setDarkTheme(themevalue: value);
                   }),
-              Divider(
+              const Divider(
                 thickness: 2,
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: TitleTextWidget(label: "Others"),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               customlisttile(
                   text: "Privacy&Policy",
                   imagepath: assetsManager.privacy,
                   ontap: () {}),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Center(
-                child: Container(
+                child: SizedBox(
                   height: 40,
                   width: 120,
                   child: ElevatedButton(
@@ -246,7 +247,7 @@ class _profilepageState extends State<profilepage>
                         child: Row(
                           children: [
                             Icon(user == null ? Icons.login : Icons.logout),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             TitleTextWidget(
                                 label: user == null ? "login" : "log out"),
                           ],
@@ -282,7 +283,7 @@ class customlisttile extends StatelessWidget {
         imagepath,
         height: 30,
       ),
-      trailing: Icon(Icons.arrow_circle_right_outlined),
+      trailing: const Icon(Icons.arrow_circle_right_outlined),
     );
   }
 }

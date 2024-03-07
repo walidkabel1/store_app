@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:store_app/screens/search_screen.dart';
 
 class categorywidget extends StatelessWidget {
-  categorywidget({required this.image, required this.name, super.key});
+  const categorywidget({required this.image, required this.name, super.key});
   final String name, image;
   @override
   Widget build(BuildContext context) {

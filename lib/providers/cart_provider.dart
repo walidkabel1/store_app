@@ -9,8 +9,8 @@ import 'package:store_app/services/myapp_methods.dart';
 import 'package:uuid/uuid.dart';
 
 class CartProvider with ChangeNotifier {
-  final Map<String, cartmodel> cartitems = {};
-  Map<String, cartmodel> get getcartitems {
+  final Map<String, CartModel> cartitems = {};
+  Map<String, CartModel> get getcartitems {
     return cartitems;
   }
 
@@ -67,7 +67,7 @@ class CartProvider with ChangeNotifier {
       for (int index = 0; index < lenght; index++) {
         cartitems.putIfAbsent(
             userdoc.get("usercart")[index]["productid"],
-            () => cartmodel(
+            () => CartModel(
                 cartid: userdoc.get("usercart")[index]["cartid"],
                 productid: userdoc.get("usercart")[index]["productid"],
                 quantity: userdoc.get("usercart")[index]["quantity"]));
@@ -115,15 +115,15 @@ class CartProvider with ChangeNotifier {
   void addProductToCart({required String productid}) {
     cartitems.putIfAbsent(
         productid,
-        () =>
-            cartmodel(cartid: Uuid().v4(), productid: productid, quantity: 1));
+        () => CartModel(
+            cartid: const Uuid().v4(), productid: productid, quantity: 1));
     notifyListeners();
   }
 
   void UpdateQuantity({required String productid, required int quantity}) {
     cartitems.update(
         productid,
-        (item) => cartmodel(
+        (item) => CartModel(
             cartid: item.cartid, productid: productid, quantity: quantity));
     notifyListeners();
   }
@@ -156,8 +156,8 @@ class CartProvider with ChangeNotifier {
   void addProductTowishlist({required String productid}) {
     cartitems.putIfAbsent(
         productid,
-        () =>
-            cartmodel(cartid: Uuid().v4(), productid: productid, quantity: 1));
+        () => CartModel(
+            cartid: const Uuid().v4(), productid: productid, quantity: 1));
     notifyListeners();
   }
 }

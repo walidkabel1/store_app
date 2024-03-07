@@ -4,24 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/cart/bottom_checkout.dart';
+import 'package:store_app/cart/empty_cartwidget.dart';
+import 'package:store_app/cart/filled_cartwidget.dart';
 import 'package:store_app/providers/cart_provider.dart';
 import 'package:store_app/providers/product_provider.dart';
 import 'package:store_app/providers/user_provider.dart';
 import 'package:store_app/screens/loading_manger.dart';
 import 'package:store_app/services/assetsmanager.dart';
-import 'package:store_app/cart/empty_cartwidget.dart';
-import 'package:store_app/cart/filled_cartwidget.dart';
 import 'package:store_app/services/myapp_methods.dart';
 import 'package:store_app/widgets/title_text.dart';
 import 'package:uuid/uuid.dart';
 
 class cartpage extends StatefulWidget {
-  cartpage({super.key});
+  const cartpage({super.key});
 
   @override
   State<cartpage> createState() => _cartpageState();
 }
 
+// ignore: camel_case_types
 class _cartpageState extends State<cartpage> {
   bool isloading = false;
 
@@ -62,7 +63,7 @@ class _cartpageState extends State<cartpage> {
                                 Navigator.pop(context);
                               });
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.delete_forever,
                           color: Colors.red,
                         ))
@@ -84,10 +85,10 @@ class _cartpageState extends State<cartpage> {
                                     .toList()
                                     .reversed
                                     .toList()[index],
-                                child: filledcartwidget());
+                                child: const filledcartwidget());
                           }),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 70,
                     )
                   ],
@@ -112,7 +113,7 @@ class _cartpageState extends State<cartpage> {
       cartProvider.getcartitems.forEach((key, value) async {
         final getcurrentproduct =
             productProvider.FindByProductId(productid: value.productid);
-        final orderid = Uuid().v4();
+        final orderid = const Uuid().v4();
         await FirebaseFirestore.instance.collection("orders").doc(orderid).set({
           "userId": uid,
           "orderid": orderid,

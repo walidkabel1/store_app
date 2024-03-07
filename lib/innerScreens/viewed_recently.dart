@@ -1,17 +1,14 @@
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
-import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/products/product_widget.dart';
 import 'package:store_app/providers/viewedRecentlr_provider.dart';
-import 'package:store_app/providers/wishlist_provider.dart';
 import 'package:store_app/services/assetsmanager.dart';
 import 'package:store_app/cart/empty_cartwidget.dart';
-import 'package:store_app/widgets/subtitle_text.dart';
 import 'package:store_app/widgets/title_text.dart';
 
 class viewedrecently extends StatelessWidget {
-  viewedrecently({super.key});
+  const viewedrecently({super.key});
   static const route = '/viewedrecently';
 
   @override

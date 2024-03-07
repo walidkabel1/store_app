@@ -10,11 +10,11 @@ class Ckeckoutwidget extends StatelessWidget {
   final Function function;
   @override
   Widget build(BuildContext context) {
-    final cart_provider = Provider.of<CartProvider>(context);
+    final cartProvider = Provider.of<CartProvider>(context);
     final productprovider = Provider.of<ProductProvider>(context);
 
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           border: Border(top: BorderSide(width: 1, color: Colors.grey))),
       child: SizedBox(
         height: kBottomNavigationBarHeight + 10,
@@ -28,10 +28,11 @@ class Ckeckoutwidget extends StatelessWidget {
                   children: [
                     FittedBox(
                         child: TitleTextWidget(
-                            label: "Total (6 Products/ 6 Items)")),
+                            label:
+                                "Total /  ${cartProvider.getcartitems.length} products ")),
                     subTitleTextWidget(
                       label:
-                          "${cart_provider.CheckOutPrice(productprovider: productprovider).toInt()} \$ ",
+                          "${cartProvider.CheckOutPrice(productprovider: productprovider).toInt()} \$ ",
                       color: Colors.blue,
                     ),
                   ],
@@ -41,7 +42,7 @@ class Ckeckoutwidget extends StatelessWidget {
                   onPressed: () async {
                     await function();
                   },
-                  child: subTitleTextWidget(label: 'Check Out'))
+                  child: const subTitleTextWidget(label: 'Check Out'))
             ],
           ),
         ),

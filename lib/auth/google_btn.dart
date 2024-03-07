@@ -52,7 +52,7 @@ class GoogleButton extends StatelessWidget {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             MyappMethods.ShowErrorOrWarningDialog(
                 context: context,
-                subtitle: "an error occured ${error}",
+                subtitle: "an error occured $error",
                 function: () {});
           });
         }

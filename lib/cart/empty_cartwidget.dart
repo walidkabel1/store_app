@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:store_app/screens/search_screen.dart';
-import 'package:store_app/services/assetsmanager.dart';
 import 'package:store_app/widgets/subtitle_text.dart';
 import 'package:store_app/widgets/title_text.dart';
 
+// ignore: camel_case_types, must_be_immutable
 class cartwidget extends StatelessWidget {
   cartwidget(
       {super.key,
@@ -19,7 +19,7 @@ class cartwidget extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Image.asset(
@@ -27,12 +27,12 @@ class cartwidget extends StatelessWidget {
               height: size.height * 0.40,
               width: double.infinity,
             ),
-            TitleTextWidget(
+            const TitleTextWidget(
               label: "Whoops!",
               fontSize: 40,
               color: Colors.red,
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             subTitleTextWidget(
@@ -40,7 +40,7 @@ class cartwidget extends StatelessWidget {
               fontSize: 26,
               fontWeight: FontWeight.w500,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Padding(
@@ -52,11 +52,12 @@ class cartwidget extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-                style: ElevatedButton.styleFrom(padding: EdgeInsets.all(20)),
+                style:
+                    ElevatedButton.styleFrom(padding: const EdgeInsets.all(20)),
                 onPressed: () {
                   Navigator.of(context).pushNamed(searchpage.route);
                 },
-                child: subTitleTextWidget(
+                child: const subTitleTextWidget(
                   label: "Shop now",
                   fontSize: 20,
                 ))
@@ -64,6 +65,5 @@ class cartwidget extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }
